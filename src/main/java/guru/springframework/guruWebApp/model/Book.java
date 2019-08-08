@@ -14,7 +14,9 @@ public class Book {
 
     private String isbn;
     private String title;
-    private String publisher;
+
+    @OneToOne
+    private Publisher publisher;
 
     @ManyToMany // ...and many books to authors
     @JoinTable(name = "author_book",
@@ -25,13 +27,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String isbn, String publisher) {
+    public Book(String title, String isbn, Publisher publisher) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
     }
 
-    public Book(String title, String isbn, String publisher, Set<Author> authors) {
+    public Book(String title, String isbn, Publisher publisher, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
@@ -74,7 +76,7 @@ public class Book {
         return isbn;
     }
 
-    public String getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
@@ -94,7 +96,7 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
